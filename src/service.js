@@ -25,7 +25,7 @@ export default class Service {
         return this.getResource("/planets")
     };
 
-    getPlanets(id) {
+    getPlanet(id) {
         return this.getResource(`/planets/${id}`)
     };
 
@@ -63,4 +63,4 @@ test.getAllVehicles().then((res) => console.debug(res))
 test.getVehicles(4).then((res) => console.log(res.name))
 
 test.getAllPlanets().then((res) => console.debug(res))
-test.getPlanets(4).then((res) => console.log(res.name))
+test.getPlanet(4).then((res) => console.log(res.name))

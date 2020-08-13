@@ -1,0 +1,12 @@
+.random {
+    padding: 2px;
+    margin: 2px;
+    color: #2aaacf;
+}
+
+.randomImage {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    height: 250px;
+    border-radius: 5px;
+}
