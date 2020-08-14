@@ -3,6 +3,7 @@
     padding: 2px;
     margin: 2px;
     color: #2aaacf;
+    background-color: #1b1e20;
 }
 
 img {
@@ -15,8 +16,12 @@ img {
 .list-group-item {
     text-align: left;
     margin: 0;
+
 }
 
 .btn-block.btn-outline-warning {
     margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+
 }

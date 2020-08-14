@@ -3,9 +3,9 @@ import Person from "./details/person";
 
 const ListItem = ({count}) => {
     return (
-        <div className="d-flex">
+        <ul className="list-group-item">
             <Person/>-{count}
-        </div>
+        </ul>
     );
 };
 

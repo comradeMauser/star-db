@@ -21,8 +21,10 @@ export default class Service {
     };
 
     //Planets(total 60)
-    getAllPlanets() {
-        return this.getResource("/planets")
+    async getAllPlanets() {
+        const result = await this.getResource("/planets")
+        return result.results
+        // return this.getResource("/planets")
     };
 
     getPlanet(id) {
@@ -48,19 +50,37 @@ export default class Service {
     };
 
 
+    dataPlanet(planet) {
+        return {
+            id:4,
+            name: planet.name,
+            climate: planet.climate,
+            diameter: planet.diameter,
+            population: planet.population,
+            rotationPeriod: planet.rotation_period,
+        }
+    }
+
+    async returnPlanetData(id) {
+        const planet = await this.getPlanet(id);
+        return this.dataPlanet(planet)
+    };
+
 }
 
 //test
-const test = new Service()
+// const test = new Service()
+// test.returnPlanetData(4).then((res) => console.log("test:", res))
 
-test.getAllPersons().then((res) => console.debug(res))
-test.getPerson(21).then((res) => console.log(res.name))
 
-test.getAllStarships().then((res) => console.debug(res))
-test.getStarship(2).then((res) => console.log(res.name))
-
-test.getAllVehicles().then((res) => console.debug(res))
-test.getVehicles(4).then((res) => console.log(res.name))
-
-test.getAllPlanets().then((res) => console.debug(res))
-test.getPlanet(4).then((res) => console.log(res.name))
+// test.getAllPersons().then((res) => console.debug(res))
+// test.getPerson(21).then((res) => console.log(res.name))
+//
+// test.getAllStarships().then((res) => console.debug(res))
+// test.getStarship(2).then((res) => console.log(res.name))
+//
+// test.getAllVehicles().then((res) => console.debug(res))
+// test.getVehicles(4).then((res) => console.log(res.name))
+//
+// test.getAllPlanets().then((res) => console.debug("getAllPlanets:", res))
+// test.getPlanet(4).then((res) => console.log(res.name))

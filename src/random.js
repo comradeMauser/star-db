@@ -7,34 +7,34 @@ class Random extends React.Component {
     localService = new Service();
 
     state = {
-        id: 2, //temporary plug: 0 and 1 do not have pictures
-        name: "name",
-        climate: "climate",
-        diameter: "diameter",
-        population: "population",
-        rotationPeriod: "rotationPeriod",
+        planet: {
+            id: 2, //temporary plug: 0 and 1 do not have pictures
+            name: "name",
+            climate: "climate",
+            diameter: "diameter",
+            population: "population",
+            rotationPeriod: "rotationPeriod",
+        }
     };
 
 
+    updState = (planet) => {
+        this.setState({planet: planet})
+        console.log("planet:", planet)
+    }
+
     upd() {
-        const id = Math.floor(Math.random() * 60)
-        this.localService.getPlanet(id).then((planet) => {
-            this.setState({
-                id,
-                name: planet.name,
-                climate: planet.climate,
-                diameter: planet.diameter,
-                population: planet.population,
-                rotationPeriod: planet.rotation_period,
-            });
-            console.log("upd()")
-        })
+        const id = Math.floor(Math.random() * 60) + 1
+        this.localService.returnPlanetData(id).then(this.updState)
     };
 
 
     render() {
-        const {id, name, climate, diameter, population, rotationPeriod} = this.state
-
+        const {
+            planet: {
+                id, name, climate, diameter, population, rotationPeriod
+            }
+        } = this.state
         return (
             <div className="random">
                 Random block(Planet id: {id})
