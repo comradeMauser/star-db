@@ -47,19 +47,21 @@ export default class Service {
     };
 
     //Vehicles(total 39)
-    getAllVehicles() {
-        return this.getResource("/vehicles")
+    async getAllVehicles() {
+        const data = await this.getResource("/vehicles");
+        return data.results.map(this._dataVehicle)
     };
 
-    getVehicles(id) {
-        return this.getResource(`/vehicles/${id}`)
+    async getVehicles(id) {
+        const vehicle = await this.getResource(`/vehicles/${id}`);
+        return this._dataVehicle(vehicle)
     };
 
+    //returns ID from url
     _dataId(data) {
         const regExp = /\/(\d)*\/$/;
         return data.url.match(regExp)[1];
     }
-
 
     //returns prepared {planet} for state
     _dataPlanet = (planet) => {
@@ -73,7 +75,6 @@ export default class Service {
         }
     };
 
-
     //returns prepared {person} for state
     _dataPerson = (person) => {
         return {
@@ -85,7 +86,6 @@ export default class Service {
             mass: person.mass,
         }
     };
-
 
     //returns prepared {starship} for state
     _dataStarship = (starship) => {
@@ -99,32 +99,31 @@ export default class Service {
         }
     };
 
-        //returns prepared {planet} for state
-        _dataPlanet = (planet) => {
-            return {
-                id: this._dataId(planet),
-                name: planet.name,
-                climate: planet.climate,
-                diameter: planet.diameter,
-                population: planet.population,
-                rotationPeriod: planet.rotation_period,
-            }
-        };
+    //returns prepared {planet} for state
+    _dataVehicle = (vehicle) => {
+        return {
+            id: this._dataId(vehicle),
+            name: vehicle.name,
+            model: vehicle.model,
+            crew: vehicle.crew,
+            cargo: vehicle.cargo_capacity,
+            class: vehicle.vehicle_class,
+        }
+    };
 
 }
 
 //test
-const test = new Service()
-
-
-// test.getAllPersons().then((res) => console.log("AllPersons:",res))
+// const test = new Service()
+//
+// test.getAllPersons().then((res) => console.log(`All Persons:`,res))
 // test.getPerson(21).then((res) => console.log(`Person ${res.name}:`,res))
-//
-// test.getAllStarships().then((res) => console.debug(res))
-// test.getStarship(2).then((res) => console.log(res))
-//
-test.getAllVehicles().then((res) => console.debug(res))
-test.getVehicles(4).then((res) => console.log(res.name))
-//
-// test.getAllPlanets().then((res) => console.log("getAllPlanets:", res))
-// test.getPlanet(3).then((res) => console.log(res.name))
+
+// test.getAllStarships().then((res) => console.log(`AllStarships:`,res))
+// test.getStarship(2).then((res) => console.log(`Starship ${res.name}:`,res))
+
+// test.getAllVehicles().then((res) => console.log(`All Vehicles:`,res))
+// test.getVehicles(4).then((res) => console.log(`Vehicle ${res.name}:`, res ))
+
+// test.getAllPlanets().then((res) => console.log(`All Planets:`, res))
+// test.getPlanet(3).then((res) => console.log(`Planet ${res.name}:`, res))
