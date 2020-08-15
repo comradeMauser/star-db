@@ -19,22 +19,19 @@ class Random extends React.Component {
 
 
     updState = (planet) => {
-        this.setState({planet: planet})
+        this.setState({planet})
         console.log("planet:", planet)
     }
 
     upd() {
         const id = Math.floor(Math.random() * 60) + 1
-        this.localService.returnPlanetData(id).then(this.updState)
+        this.localService.getPlanet(id).then(this.updState)
     };
 
 
     render() {
-        const {
-            planet: {
-                id, name, climate, diameter, population, rotationPeriod
-            }
-        } = this.state
+        const {planet: {id, name, climate, diameter, population, rotationPeriod}} = this.state
+
         return (
             <div className="random">
                 Random block(Planet id: {id})
