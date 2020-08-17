@@ -5,9 +5,12 @@ import "./spinner.css"
 
 const Spinner = () => {
     return (
-        <figure className="spinner">
-            <img src={spinner} alt="spinner"/>
-        </figure>
+        <div>
+            ...loading...
+            <figure className="spinner">
+                <img src={spinner} alt="spinner"/>
+            </figure>
+        </div>
     );
 };
 

@@ -1,0 +1,11 @@
+.errIndicator {
+    text-align: center;
+    padding: 2px;
+    margin: 2px;
+    background-color: red;
+    height: 320px;
+    /*width: 295px;*/
+    border-radius: 5px;
+    border: solid 2px darkgrey;
+}
+

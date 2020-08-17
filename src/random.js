@@ -1,15 +1,21 @@
 import React from 'react';
+import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 import Spinner from "./services/spinner";
 import "./random.css";
 
 
 class Random extends React.Component {
+    /*
+        constructor() {
+            super();
+            this.upd()
+        }
+    */
 
     localService = new Service();
 
     state = {
-        // planet: {},
         planet: {
             id: 2, //temporary plug: 0 and 1 do not have pictures
             name: "name",
@@ -18,17 +24,17 @@ class Random extends React.Component {
             population: "population",
             rotationPeriod: "rotationPeriod",
         },
-        loading: true
+        loading: true,
+        error: false,
     };
 
     updState = (planet) => {
         this.setState(
             {
                 planet,
-                loading: false
+                loading: false,
+                erroe: false,
             })
-        console.log("planet:", planet)
-        console.log("state:", this.state)
     };
 
     //gets object data from service
@@ -39,34 +45,47 @@ class Random extends React.Component {
 
     //test function: toggle for "loading"
     load = () => {
-        console.log("loading:", this.state.loading)
-        this.setState({loading: !this.state.loading})
+        this.setState({
+            loading: !this.state.loading, error: false
+        })
+    };
+
+    //test function: toggle for "loading"
+    err = () => {
+        this.setState({
+            error: !this.state.error, loading: false
+        })
     }
 
 
     render() {
-        const {planet, loading} = this.state
+        const {planet, loading, error} = this.state
 
-        const content = loading ? <Spinner/> : <Content planet={planet} upd={this.upd} load={this.load}/>
+        const content = !loading && !error ? <Content planet={planet} upd={this.upd} load={this.load}/> : null;
+        const indicator = error ? <ErrorIndicator/> : null;
+        const spinner = loading ? <Spinner/> : null;
 
-        if (loading) {
-            return (
-                <div>
-                    <Spinner/>
-                                        {/*test buttons*/}
-                    <button className="btn-block btn-outline-warning" onClick={() => {
-                        this.upd()
-                    }}>test Random component: f()update
-                    </button>
-                    <button className="btn-block btn-outline-danger" onClick={() => {
-                        this.load()
-                    }}>test Random component: f()loading true/false
-                    </button>
-                </div>)
-        }
         return (
-            <div className="random">
+            <div className="random justify-content-center">
+
                 {content}
+                {indicator}
+                {spinner}
+
+                {/*test buttons*/}
+                <button className="btn-block btn-outline-info" onClick={() => {
+                    this.upd()
+                }}>test Random component: f()update
+                </button>
+                <button className="btn-block btn-outline-warning" onClick={() => {
+                    this.load()
+                }}>test Random component: f()loading true/false
+                </button>
+                <button className="btn-block btn-outline-danger" onClick={() => {
+                    this.err()
+                }}>test Random component: f()error true/false
+                </button>
+
             </div>
         )
     }
@@ -74,14 +93,14 @@ class Random extends React.Component {
 
 export default Random;
 
+
 //Fragment
 const Content = (props) => {
-
     const {id, name, climate, diameter, population, rotationPeriod} = props.planet;
-    const {upd, load} = props;
 
     return (
         <React.Fragment>
+            Random Planet - id: {id}
             <div className="container d-flex justify-content-center">
                 <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
                      alt="random"/>
@@ -93,14 +112,6 @@ const Content = (props) => {
                     <ul className="list-group-item">rotation period: {rotationPeriod}</ul>
                 </li>
             </div>
-            <button className="btn-block btn-outline-warning" onClick={() => {
-                upd()
-            }}>test Random component: f()update
-            </button>
-            <button className="btn-block btn-outline-danger" onClick={() => {
-                load()
-            }}>test Random component: f()loading true/false
-            </button>
         </React.Fragment>
     )
 };

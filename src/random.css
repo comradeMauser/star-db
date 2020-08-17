@@ -23,3 +23,8 @@ img {
     margin-bottom: 5px;
     border-radius: 5px;
 }
+.btn-block.btn-outline-danger {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
