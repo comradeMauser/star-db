@@ -10,7 +10,6 @@ export default class Service {
         return await resource.json();
     };
 
-
     //Persons (total 82)
     async getAllPersons() {
         const data = await this.getResource("/people");
@@ -22,7 +21,6 @@ export default class Service {
         return this._dataPerson(person)
     };
 
-
     //Planets(total 60)
     async getAllPlanets() {
         const data = await this.getResource("/planets");
@@ -33,7 +31,6 @@ export default class Service {
         const planet = await this.getResource(`/planets/${id}`);
         return this._dataPlanet(planet)
     };
-
 
     //Starships (total 36)
     async getAllStarships() {
@@ -115,7 +112,7 @@ export default class Service {
 
 //test
 // const test = new Service()
-//
+
 // test.getAllPersons().then((res) => console.log(`All Persons:`,res))
 // test.getPerson(21).then((res) => console.log(`Person ${res.name}:`,res))
 
