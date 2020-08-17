@@ -55,7 +55,7 @@ export default class Service {
     };
 
     //returns ID from url
-    _dataId(data) {
+    _dataId = (data) => {
         const regExp = /\/(\d)*\/$/;
         return data.url.match(regExp)[1];
     }
