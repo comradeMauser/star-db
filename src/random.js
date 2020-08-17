@@ -82,7 +82,6 @@ const Content = (props) => {
 
     return (
         <React.Fragment>
-            Random block(Planet id: {id})
             <div className="container d-flex justify-content-center">
                 <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
                      alt="random"/>

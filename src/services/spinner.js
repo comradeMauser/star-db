@@ -1,12 +1,13 @@
 import React from 'react';
 import spinner from "./spinner(loader).svg";
+import "./spinner.css"
 
 
 const Spinner = () => {
     return (
-        <div>
+        <figure className="spinner">
             <img src={spinner} alt="spinner"/>
-        </div>
+        </figure>
     );
 };
 
