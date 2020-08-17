@@ -6,9 +6,9 @@ import "./error-indicator.css";
 const ErrorIndicator = () => {
     return (
         <div>
-            gotta fix that shit
-            <figure  className="errIndicator">
+            <figure className="col errIndicator">
                 <img src={r2d2} alt="error"/>
+                gotta fix that shit
             </figure>
         </div>
     );

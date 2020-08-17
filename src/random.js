@@ -33,14 +33,17 @@ class Random extends React.Component {
             {
                 planet,
                 loading: false,
-                erroe: false,
+                error: false,
             })
     };
 
     //gets object data from service
     upd = () => {
         const id = Math.floor(Math.random() * 60) + 1
-        this.localService.getPlanet(id).then(this.updState)
+        // const id = 300
+        this.localService.getPlanet(id)
+            .then(this.updState)
+            .catch(this.err)
     };
 
     //test function: toggle for "loading"
@@ -50,12 +53,12 @@ class Random extends React.Component {
         })
     };
 
-    //test function: toggle for "loading"
+    //test function: toggle for "error"
     err = () => {
         this.setState({
             error: !this.state.error, loading: false
         })
-    }
+    };
 
 
     render() {
