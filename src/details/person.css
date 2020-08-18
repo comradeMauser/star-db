@@ -10,6 +10,7 @@
 .person-img {
     margin-bottom: 3px;
     margin-right: 3px;
+    padding: 3px;
     height: 295px;
     border-radius: 5px;
     border: solid 1px black;

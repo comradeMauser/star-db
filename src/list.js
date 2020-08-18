@@ -1,6 +1,7 @@
 import React from 'react';
 import Person from "./details/person";
 import ErrorButton from "./services/error-button";
+import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 
 
@@ -52,8 +53,17 @@ class List extends React.Component {
         }
     };
 
+    componentDidCatch(error, errorInfo) {
+        this.setState({error: true})
+    }
+
     render() {
-        const {persons, person} = this.state;
+        const {persons, person, error} = this.state;
+
+        if (error) {
+            return <ErrorIndicator/>
+        }
+
         const list = persons.map(person => {
             return (
                 <li key={person.id}
@@ -72,7 +82,6 @@ class List extends React.Component {
             <div className="list row">
                 <ul className="list-unstyled list-group col-5">
                     {list}
-                    =========
                 </ul>
                 <div className="col-6">
                     <Person person={person}/>

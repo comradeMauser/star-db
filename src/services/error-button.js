@@ -1,5 +1,4 @@
 import React from 'react';
-import ErrorIndicator from "./error-indicator";
 
 class ErrorButton extends React.Component {
 
@@ -14,7 +13,6 @@ class ErrorButton extends React.Component {
     render() {
         if (this.state.error) {
             this.foo();
-            return <ErrorIndicator/>
         }
         return (
             <div>
