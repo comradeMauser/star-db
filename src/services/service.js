@@ -111,9 +111,9 @@ export default class Service {
 }
 
 //test
-const test = new Service()
-//
-test.getAllPersons().then((res) => console.log(`All Persons:`,res))
+// const test = new Service()
+
+// test.getAllPersons().then((res) => console.log(`All Persons:`,res))
 // test.getPerson(23).then((res) => console.log(`Person ${res.name}:`,res))
 
 // test.getAllStarships().then((res) => console.log(`AllStarships:`,res))

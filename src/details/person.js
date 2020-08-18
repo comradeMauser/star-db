@@ -1,18 +1,17 @@
 import React from 'react';
 import "./person.css";
-import Spinner from "../services/spinner";
-
+import Loader from "react-loader-spinner";
 
 const Person = ({person}) => {
     const {id, name, birth, eye, height, mass} = person
 
     if (!id) {
-        return <Spinner/>
+        return <Loader type="Rings" color="yellow"/>
     }
     return (
         <div className="person row">
             <ul className="list-group col-6">
-                <li className="list-group-item"> name: {name}</li>
+                <li className="list-group-item text-center text-warning" > {name}</li>
                 <li className="list-group-item"> birth: {birth}</li>
                 <li className="list-group-item"> eye: {eye}</li>
                 <li className="list-group-item"> height: {height}</li>
