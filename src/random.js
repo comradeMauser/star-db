@@ -3,15 +3,15 @@ import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 import Spinner from "./services/spinner";
 import "./random.css";
+import TestButtons from "./test-buttons";
 
 
 class Random extends React.Component {
-    /*
-        constructor() {
-            super();
-            this.upd()
-        }
-    */
+    constructor() {
+        console.log("constructor")
+        super();
+        this.upd()
+    }
 
     localService = new Service();
 
@@ -29,6 +29,7 @@ class Random extends React.Component {
     };
 
     updState = (planet) => {
+        console.log("upd=>updState")
         this.setState(
             {
                 planet,
@@ -39,11 +40,11 @@ class Random extends React.Component {
 
     //gets object data from service
     upd = () => {
-        const id = Math.floor(Math.random() * 60) + 1
-        // const id = 300
+        // const id = Math.floor(Math.random() * 60) + 1
+        const id = 300
         this.localService.getPlanet(id)
             .then(this.updState)
-            .catch(this.err)
+            .catch((error) => this.errCatch(error))
     };
 
     //test function: toggle for "loading"
@@ -54,41 +55,28 @@ class Random extends React.Component {
     };
 
     //test function: toggle for "error"
-    err = () => {
+    errCatch = (err) => {
         this.setState({
             error: !this.state.error, loading: false
-        })
+        });
+        console.error("errCatch:", err)
     };
 
-
     render() {
+        console.log("render")
         const {planet, loading, error} = this.state
 
-        const content = !loading && !error ? <Content planet={planet} upd={this.upd} load={this.load}/> : null;
+        const content = !loading && !error ? <Content planet={planet}/> : null;
         const indicator = error ? <ErrorIndicator/> : null;
         const spinner = loading ? <Spinner/> : null;
 
         return (
             <div className="random justify-content-center">
-
+                Допилить life hooks
                 {content}
                 {indicator}
                 {spinner}
-
-                {/*test buttons*/}
-                <button className="btn-block btn-outline-info" onClick={() => {
-                    this.upd()
-                }}>test Random component: f()update
-                </button>
-                <button className="btn-block btn-outline-warning" onClick={() => {
-                    this.load()
-                }}>test Random component: f()loading true/false
-                </button>
-                <button className="btn-block btn-outline-danger" onClick={() => {
-                    this.err()
-                }}>test Random component: f()error true/false
-                </button>
-
+                <TestButtons upd={this.upd} load={this.load} err={this.errCatch}/>
             </div>
         )
     }

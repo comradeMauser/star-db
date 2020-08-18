@@ -1,11 +1,10 @@
 import React from 'react';
-import Person from "./details/person";
 
-const ListItem = ({count}) => {
+const ListItem = () => {
     return (
-        <ul className="list-group-item">
-            <Person/>-{count}
-        </ul>
+        <li className="list-group-item">
+            list item
+        </li>
     );
 };
 

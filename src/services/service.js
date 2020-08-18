@@ -60,18 +60,6 @@ export default class Service {
         return data.url.match(regExp)[1];
     }
 
-    //returns prepared {planet} for state
-    _dataPlanet = (planet) => {
-        return {
-            id: this._dataId(planet),
-            name: planet.name,
-            climate: planet.climate,
-            diameter: planet.diameter,
-            population: planet.population,
-            rotationPeriod: planet.rotation_period,
-        }
-    };
-
     //returns prepared {person} for state
     _dataPerson = (person) => {
         return {
@@ -81,6 +69,18 @@ export default class Service {
             eye: person.eye_color,
             height: person.height,
             mass: person.mass,
+        }
+    };
+
+    //returns prepared {planet} for state
+    _dataPlanet = (planet) => {
+        return {
+            id: this._dataId(planet),
+            name: planet.name,
+            climate: planet.climate,
+            diameter: planet.diameter,
+            population: planet.population,
+            rotationPeriod: planet.rotation_period,
         }
     };
 
