@@ -6,6 +6,15 @@
     height: 320px;
     border-radius: 5px;
     border: solid 2px darkgrey;
-color: white;
+}
+
+img{
+    height: 295px;
+    padding-top: 15px;
+}
+
+.errMessage{
+    color: white;
+    text-justify: distribute;
 }
 

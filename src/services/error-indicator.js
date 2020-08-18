@@ -8,7 +8,7 @@ const ErrorIndicator = () => {
         <div>
             <figure className="col errIndicator">
                 <img src={r2d2} alt="error"/>
-                gotta fix that shit
+                <span className="errMessage">gotta fix that shit</span>
             </figure>
         </div>
     );

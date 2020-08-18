@@ -1,5 +1,6 @@
 import React from 'react';
 import Person from "./details/person";
+import ErrorButton from "./services/error-button";
 import Service from "./services/service";
 
 
@@ -75,6 +76,7 @@ class List extends React.Component {
                 </ul>
                 <div className="col-6">
                     <Person person={person}/>
+                    <ErrorButton/>
                 </div>
             </div>
         )
