@@ -1,5 +1,5 @@
 import React from 'react';
-import r2d2 from "./r2d2.png"
+import r2d2 from "./error(r2d2).png"
 import "./error-indicator.css";
 
 

@@ -56,7 +56,7 @@ export default class Service {
 
     //returns ID from url
     _dataId = (data) => {
-        const regExp = /\/(\d)*\/$/;
+        const regExp = /\/(\d*)\/$/;
         return data.url.match(regExp)[1];
     }
 
@@ -111,10 +111,10 @@ export default class Service {
 }
 
 //test
-// const test = new Service()
-
-// test.getAllPersons().then((res) => console.log(`All Persons:`,res))
-// test.getPerson(21).then((res) => console.log(`Person ${res.name}:`,res))
+const test = new Service()
+//
+test.getAllPersons().then((res) => console.log(`All Persons:`,res))
+// test.getPerson(23).then((res) => console.log(`Person ${res.name}:`,res))
 
 // test.getAllStarships().then((res) => console.log(`AllStarships:`,res))
 // test.getStarship(2).then((res) => console.log(`Starship ${res.name}:`,res))

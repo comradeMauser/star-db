@@ -1,5 +1,5 @@
 import React from 'react';
-// import ListItem from "./list-item";
+import Person from "./details/person";
 import Service from "./services/service";
 
 
@@ -8,6 +8,7 @@ class List extends React.Component {
     localService = new Service()
     state = {
         persons: [],
+        person: {},
         loading: false,
         error: false
     }
@@ -27,28 +28,44 @@ class List extends React.Component {
         console.debug("mounted")
     }
 
+    getPerson = (id) => {
+        this.localService.getPerson(id)
+            .then((person) => {
+                this.setState({person})
+            })
+        console.log("person:", this.state.person)
+    }
+
     render() {
-        const {persons} = this.state;
+        const {persons, person} = this.state;
         const main = persons.map(person => {
             return (
                 <li key={person.id}
                     className="list-group-item"
+                    onClick={() => {
+                        console.log(person.id);
+                        this.getPerson(person.id)
+                    }}
                 >
-                    {person.id} : {person.name},
+                    {person.id} : {person.name}
                 </li>
             )
         })
 
+
         return (
-            <ul className="list-unstyled list-group">
-                List:
-                {main}
-                {/*<ListItem count={0}/>*/}
-                {/*<ListItem count={1}/>*/}
-                {/*<ListItem count={2}/>*/}
-                {/*<ListItem count={3}/>*/}
-                =========
-            </ul>
+            <div className="list row">
+                <ul className="list-unstyled list-group col-5">
+                    List:
+                    {main}
+                    =========
+                </ul>
+                <div className="col-6">
+                    Person info:
+                    <Person person={person}/>
+                </div>
+            </div>
+
         )
     }
 }

@@ -3,7 +3,7 @@ import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 import Spinner from "./services/spinner";
 import "./random.css";
-import TestButtons from "./test-buttons";
+import TestButtons from "./services/test-buttons";
 
 
 class Random extends React.Component {

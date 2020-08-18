@@ -1,0 +1,16 @@
+
+.person.row{
+    margin-left: 5px;
+}
+
+.list-group.col-6{
+    color: yellow;
+    padding-right: 0;
+}
+.person-img {
+    margin-bottom: 3px;
+    margin-right: 3px;
+    height: 295px;
+    border-radius: 5px;
+    border: solid 1px black;
+}
