@@ -15,18 +15,14 @@ class List extends React.Component {
     };
 
     //creates list with person names
-    componentDidMount() {
+    getList = () => {
+        console.log("getList")
+
         this.localService.getAllPersons()
             .then((persons) => {
                 this.setState({persons})
-            }).catch((err) => this.errCatch(err));
-        console.debug("mounted")
-    };
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.person.id !== prevState.person.id) {
-            this.getPerson(this.state.person.id)
-        }
+            })
+            .catch((err) => this.errCatch(err));
     };
 
     //updates component 'Person' with new props
@@ -43,6 +39,16 @@ class List extends React.Component {
             error: !this.state.error, loading: false
         });
         console.error("errCatch:", err)
+    };
+
+    componentDidMount() {
+        this.getList()
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.state.person.id !== prevState.person.id) {
+            this.getPerson(this.state.person.id)
+        }
     };
 
     render() {
@@ -64,12 +70,10 @@ class List extends React.Component {
         return (
             <div className="list row">
                 <ul className="list-unstyled list-group col-5">
-                    List:
                     {list}
                     =========
                 </ul>
                 <div className="col-6">
-                    Person info:
                     <Person person={person}/>
                 </div>
             </div>

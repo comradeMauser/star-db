@@ -15,6 +15,10 @@ export default class Service {
         const data = await this.getResource("/people");
         return data.results.map(this._dataPerson)
     };
+    async getAlllPersons() {
+        const data = await this.getResource("/people");
+        return data.results
+    };
 
     async getPerson(id) {
         const person = await this.getResource(`/people/${id}`);
@@ -111,11 +115,11 @@ export default class Service {
 }
 
 //test
-// const test = new Service()
-
-// test.getAllPersons().then((res) => console.log(`All Persons:`,res))
-// test.getPerson(23).then((res) => console.log(`Person ${res.name}:`,res))
-
+const test = new Service()
+//
+test.getAllPersons().then((res) => console.log(`All Persons:`,res))
+test.getPerson(23).then((res) => console.log(`Person ${res.name}:`,res))
+test.getAlllPersons().then((res) => console.log(`Persons:`,res))
 // test.getAllStarships().then((res) => console.log(`AllStarships:`,res))
 // test.getStarship(2).then((res) => console.log(`Starship ${res.name}:`,res))
 
@@ -124,3 +128,4 @@ export default class Service {
 
 // test.getAllPlanets().then((res) => console.log(`All Planets:`, res))
 // test.getPlanet(3).then((res) => console.log(`Planet ${res.name}:`, res))
+
