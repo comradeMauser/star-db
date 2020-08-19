@@ -22,7 +22,7 @@ export default class Service {
     };
 
     //Planets(total 60)
-    async getAllPlanets() {
+    getAllPlanets = async () => {
         const data = await this.getResource("/planets");
         return data.results.map(this._dataPlanet)
     };
@@ -33,7 +33,7 @@ export default class Service {
     };
 
     //Starships (total 36)
-    async getAllStarships() {
+    getAllStarships = async () => {
         const data = await this.getResource("/starships/");
         return data.results.map(this._dataStarship)
     };
@@ -44,7 +44,7 @@ export default class Service {
     };
 
     //Vehicles(total 39)
-    async getAllVehicles() {
+    getAllVehicles = async () => {
         const data = await this.getResource("/vehicles");
         return data.results.map(this._dataVehicle)
     };

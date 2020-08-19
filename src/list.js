@@ -16,8 +16,7 @@ class List extends React.Component {
         error: false
     };
 
-    //creates list with person names
-/*
+    /*//creates list with person names
     getList = () => {
         console.log("getList")
 
@@ -26,8 +25,7 @@ class List extends React.Component {
                 this.setState({persons})
             })
             .catch((err) => this.errCatch(err));
-    };
-*/
+    };*/
 
     //updates component 'Person' with new props
     getPerson = (id) => {
@@ -46,14 +44,13 @@ class List extends React.Component {
     };
 
     componentDidMount() {
-        // this.getList();
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+   /* componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.person.id !== prevState.person.id) {
             this.getPerson(this.state.person.id)
         }
-    };
+    };*/
 
     componentDidCatch(error, errorInfo) {
         this.setState({error: true})
@@ -66,11 +63,12 @@ class List extends React.Component {
             return <ErrorIndicator/>
         }
         return (
-            <div className="list row">
+            <div className="row">
                 <div className="col-5">
-                    <ListItems listItems={this.localService.getAllPersons} func={this.getPerson}/>
-                    {/*<ListItems listItems={this.localService.getAllPlanets} func={this.getPerson}/>*/}
-                    {/*<ListItems listItems={this.localService.getAllVehicles} func={this.getPerson}/>*/}
+                    <ListItems listItems={this.localService.getAllPersons} getItem={this.getPerson}/>
+                    <ListItems listItems={this.localService.getAllPlanets} getItem={this.getPerson}/>
+                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getPerson}/>
+                    <ListItems listItems={this.localService.getAllVehicles} getItem={this.getPerson}/>
                 </div>
                 <div className="col-6">
                     <Person person={person}/>
