@@ -11,7 +11,7 @@ export default class Service {
     };
 
     //Persons (total 82)
-    async getAllPersons() {
+    getAllPersons = async () => {
         const data = await this.getResource("/people");
         return data.results.map(this._dataPerson)
     };
