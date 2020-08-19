@@ -1,8 +1,7 @@
 import React from 'react';
+import Loader from "react-loader-spinner";
 import Person from "./details/person";
 import ListItems from "./list-items";
-import ErrorButton from "./services/error-button";
-import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 
 
@@ -13,21 +12,12 @@ class List extends React.Component {
     state = {
         person: {},
         loading: true,
-        error: false
     };
 
-    /*//creates list with person names
-    getList = () => {
-        console.log("getList")
+    componentDidMount() {
+        this.setState({loading:false})
+    }
 
-        this.localService.getAllPersons()
-            .then((persons) => {
-                this.setState({persons})
-            })
-            .catch((err) => this.errCatch(err));
-    };*/
-
-    //updates component 'Person' with new props
     getPerson = (id) => {
         this.localService.getPerson(id)
             .then((person) => {
@@ -36,31 +26,12 @@ class List extends React.Component {
         console.log("person:", this.state.person)
     };
 
-    errCatch = (err) => {
-        this.setState({
-            error: !this.state.error, loading: false
-        });
-        console.error("errCatch:", err)
-    };
-
-    componentDidMount() {
-    };
-
-   /* componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.person.id !== prevState.person.id) {
-            this.getPerson(this.state.person.id)
-        }
-    };*/
-
-    componentDidCatch(error, errorInfo) {
-        this.setState({error: true})
-    }
 
     render() {
-        const {person, error} = this.state;
+        const {person, loading} = this.state;
 
-        if (error) {
-            return <ErrorIndicator/>
+        if (loading) {
+            return <Loader type="Rings" color="yellow"/>
         }
         return (
             <div className="row">
@@ -72,7 +43,6 @@ class List extends React.Component {
                 </div>
                 <div className="col-6">
                     <Person person={person}/>
-                    <ErrorButton/>
                 </div>
             </div>
         )

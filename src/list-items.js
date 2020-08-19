@@ -1,18 +1,11 @@
 import React from 'react';
 import "./list-items.css";
+import ErrorBoundary from "./services/error-boundary";
 
 class ListItems extends React.Component {
     state = {
         items: [],
-        error: false,
     }
-
-    errCatch = (err) => {
-        this.setState({
-            error: !this.state.error, loading: false
-        });
-        console.error("errCatch:", err)
-    };
 
     componentDidMount() {
         const {listItems} = this.props;
@@ -22,7 +15,7 @@ class ListItems extends React.Component {
             .then((items) => {
                 this.setState({items})
             })
-            .catch((err) => this.errCatch(err))
+            .catch((err) => console.error(err))
     };
 
 
@@ -45,9 +38,11 @@ class ListItems extends React.Component {
         })
 
         return (
-            <ul className="list-unstyled">
-                {list}
-            </ul>
+            <ErrorBoundary>
+                <ul className="list-unstyled">
+                    {list}
+                </ul>
+            </ErrorBoundary>
         )
     }
 }
