@@ -6,6 +6,18 @@ import ListItems from "./list-items";
 import Service from "./services/service";
 
 
+const StarFields = ({dataField, field, label}) => {
+    return (
+        <ul className="list-group col-6">
+            <li className="list-group-item text-center text-warning"> {label}</li>
+            <li className="list-group-item"> {field}: {dataField[label]}</li>
+            <li className="list-group-item"> {field}: {dataField[label]}</li>
+            <li className="list-group-item"> {field}: {dataField[label]}</li>
+            <li className="list-group-item"> {field}: {dataField[label]}</li>
+        </ul>
+    );
+};
+
 class List extends React.Component {
 
     localService = new Service();
@@ -50,7 +62,10 @@ class List extends React.Component {
                 </div>
                 <div className="col-6">
                     <Person person={person}/>
-                    <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}/>
+
+                    <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}>
+                        <StarFields field="Dildo" label="Master"/>
+                    </Starship>
                 </div>
             </div>
         )

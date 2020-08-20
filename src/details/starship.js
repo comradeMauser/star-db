@@ -34,7 +34,9 @@ class Starship extends Component {
     }
 
     render() {
-        const {data: {id, name, birth, eye, height, mass}, image} = this.state
+        const {data, image} = this.state
+        const {id, name, birth, eye, crew, model} = this.state.data
+        const {children} = this.props
         console.log(this.state.data)
 
         if (!id) {
@@ -44,13 +46,16 @@ class Starship extends Component {
             <ErrorBoundary>
                 class Starship
                 <div className="person row">
-                    <ul className="list-group col-6">
+                    {/*<ul className="list-group col-6">
                         <li className="list-group-item text-center text-warning"> {name}</li>
                         <li className="list-group-item"> birth: {birth}</li>
                         <li className="list-group-item"> eye: {eye}</li>
-                        <li className="list-group-item"> height: {height}</li>
-                        <li className="list-group-item"> mass: {mass}</li>
-                    </ul>
+                        <li className="list-group-item"> crew: {crew}</li>
+                        <li className="list-group-item"> model: {model}</li>
+                    </ul>*/}
+
+                    {children}
+
                     <figure className="person-figure col-4">
                         <img className="person-img"
                              src={image}
