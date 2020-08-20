@@ -35,7 +35,8 @@ class Starship extends Component {
 
     render() {
         const {data, image} = this.state
-        const {id, name, birth, eye, crew, model} = this.state.data
+        // const {id, name, birth, eye, crew, model} = data
+        const {id} = data
         const {children} = this.props
         console.log(this.state.data)
 
@@ -54,7 +55,13 @@ class Starship extends Component {
                         <li className="list-group-item"> model: {model}</li>
                     </ul>*/}
 
-                    {children}
+                    {
+
+                        React.Children.map(children, (element)=>{
+                            return React.cloneElement(element, {data})
+                        })
+
+                    }
 
                     <figure className="person-figure col-4">
                         <img className="person-img"

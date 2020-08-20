@@ -4,19 +4,8 @@ import Person from "./details/person";
 import Starship from "./details/starship";
 import ListItems from "./list-items";
 import Service from "./services/service";
+import StarFields from "./starFields";
 
-
-const StarFields = ({dataField, field, label}) => {
-    return (
-        <ul className="list-group col-6">
-            <li className="list-group-item text-center text-warning"> {label}</li>
-            <li className="list-group-item"> {field}: {dataField[label]}</li>
-            <li className="list-group-item"> {field}: {dataField[label]}</li>
-            <li className="list-group-item"> {field}: {dataField[label]}</li>
-            <li className="list-group-item"> {field}: {dataField[label]}</li>
-        </ul>
-    );
-};
 
 class List extends React.Component {
 
@@ -25,7 +14,7 @@ class List extends React.Component {
     state = {
         person: {},
         loading: true,
-        elementId: 2
+        elementId: 5,
     };
 
     componentDidMount() {
@@ -48,7 +37,7 @@ class List extends React.Component {
         const {person, loading, elementId} = this.state;
         const {getAllPersons, getStarship, getStarshipImage} = this.localService
         console.debug("elementId", elementId)
-
+        const stars = ["name", "model", "passengers", "cost", "crew"]
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
         }
@@ -64,7 +53,7 @@ class List extends React.Component {
                     <Person person={person}/>
 
                     <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}>
-                        <StarFields field="Dildo" label="Master"/>
+                        <StarFields stars={stars} field="Dildo" label="model"/>
                     </Starship>
                 </div>
             </div>
