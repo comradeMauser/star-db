@@ -1,5 +1,6 @@
 export default class Service {
     _urlBase = "https://swapi.dev/api";
+    _urlImageBase = "https://starwars-visualguide.com/assets/img"
 
     //returns resource from
     async getResource(url) {
@@ -16,9 +17,13 @@ export default class Service {
         return data.results.map(this._dataPerson)
     };
 
-    async getPerson(id) {
+    getPerson = async (id) => {
         const person = await this.getResource(`/people/${id}`);
         return this._dataPerson(person)
+    };
+
+    getPersonImage = (id) => {
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
     };
 
     //Planets(total 60)
@@ -27,9 +32,13 @@ export default class Service {
         return data.results.map(this._dataPlanet)
     };
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const planet = await this.getResource(`/planets/${id}`);
         return this._dataPlanet(planet)
+    };
+
+    getPlanetImage = (id) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
     };
 
     //Starships (total 36)
@@ -43,15 +52,23 @@ export default class Service {
         return this._dataStarship(starship)
     };
 
+    getStarshipImage = (id) => {
+        return `${this._urlImageBase}/starships/${id}.jpg`
+    }
+
     //Vehicles(total 39)
     getAllVehicles = async () => {
         const data = await this.getResource("/vehicles");
         return data.results.map(this._dataVehicle)
     };
 
-    async getVehicles(id) {
+    getVehicle = async (id) => {
         const vehicle = await this.getResource(`/vehicles/${id}`);
         return this._dataVehicle(vehicle)
+    };
+
+    getVehicleImage = (id) => {
+        return `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`
     };
 
     //returns ID from url
