@@ -53,7 +53,7 @@ class List extends React.Component {
                     <Person person={person}/>
 
                     <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}>
-                        <StarFields stars={stars} field="Dildo" label="model"/>
+                        <StarFields stars={stars} />
                     </Starship>
                 </div>
             </div>
