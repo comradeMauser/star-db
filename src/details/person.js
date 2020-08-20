@@ -11,6 +11,7 @@ const Person = ({person}) => {
     }
     return (
         <ErrorBoundary>
+            const Person
             <div className="person row">
                 <ul className="list-group col-6">
                     <li className="list-group-item text-center text-warning"> {name}</li>

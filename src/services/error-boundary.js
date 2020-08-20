@@ -3,7 +3,6 @@ import ErrorButton from "./error-button";
 import ErrorIndicator from "./error-indicator";
 
 
-
 class ErrorBoundary extends React.Component {
 
     state = {
@@ -28,7 +27,7 @@ class ErrorBoundary extends React.Component {
         }
         return (
             <div>
-<ErrorButton/>
+                <ErrorButton/>
                 {this.props.children}
             </div>
         );

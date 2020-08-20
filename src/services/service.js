@@ -38,7 +38,7 @@ export default class Service {
         return data.results.map(this._dataStarship)
     };
 
-    async getStarship(id) {
+    getStarship = async (id) => {
         const starship = await this.getResource(`/starships/${id}`);
         return this._dataStarship(starship)
     };
