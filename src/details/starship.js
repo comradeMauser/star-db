@@ -1,30 +1,45 @@
 import React, {Component} from 'react';
 import Loader from "react-loader-spinner";
 import ErrorBoundary from "../services/error-boundary";
+import Service from "../services/service";
 
 class Starship extends Component {
+    localService = new Service();
+
     state = {
         data: {},
+        image: null,
         loading: true,
     };
 
 
     componentDidMount() {
-        const {id} = this.props
-        this.props.getData(id)
+        const {dataId, getData, getImage} = this.props
+        getData(dataId)
             .then((data) => {
                 this.setState({data})
-            })
-        // console.log("person:", this.state.person)
+            });
+        this.setState({image: getImage(dataId)})
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.dataId !== prevProps.dataId) {
+            const {dataId, getData} = this.props
+            getData(dataId)
+                .then((data) => {
+                    this.setState({data})
+                });
+            this.setState({image: this.localService.getStarshipImage(dataId)})
+        }
+    }
+
     render() {
-        const {id, name, birth, eye, height, mass} = this.state.data
+        const {data: {id, name, birth, eye, height, mass}, image} = this.state
+        console.log(this.state.data)
 
         if (!id) {
             return <Loader type="Rings" color="yellow"/>
         }
-
         return (
             <ErrorBoundary>
                 class Starship
@@ -38,7 +53,7 @@ class Starship extends Component {
                     </ul>
                     <figure className="person-figure col-4">
                         <img className="person-img"
-                             src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                             src={image}
                              alt="person"/>
                     </figure>
                 </div>

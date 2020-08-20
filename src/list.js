@@ -13,6 +13,7 @@ class List extends React.Component {
     state = {
         person: {},
         loading: true,
+        elementId: 2
     };
 
     componentDidMount() {
@@ -27,10 +28,14 @@ class List extends React.Component {
         // console.log("person:", this.state.person)
     };
 
+    getElementId = (itemListId) => {
+        this.setState({elementId: itemListId})
+    }
 
     render() {
-        const {person, loading} = this.state;
-        const {getAllPersons, getStarship} = this.localService
+        const {person, loading, elementId} = this.state;
+        const {getAllPersons, getStarship, getStarshipImage} = this.localService
+        console.debug("elementId", elementId)
 
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
@@ -39,13 +44,13 @@ class List extends React.Component {
             <div className="row">
                 <div className="col-5">
                     <ListItems listItems={getAllPersons} getItem={this.getPerson}/>
-                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getPerson}/>
+                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getElementId}/>
                     {/*<ListItems listItems={this.localService.getAllPlanets} getItem={this.getPerson}/>*/}
                     {/*<ListItems listItems={this.localService.getAllVehicles} getItem={this.getPerson}/>*/}
                 </div>
                 <div className="col-6">
                     <Person person={person}/>
-                    <Starship id={22} getData={getStarship}/>
+                    <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}/>
                 </div>
             </div>
         )
