@@ -1,10 +1,9 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
-import Person from "./details/person";
+// import Person from "./details/person";
 import Starship from "./details/starship";
 import ListItems from "./list-items";
 import Service from "./services/service";
-import StarFields from "./starFields";
 
 
 class List extends React.Component {
@@ -14,7 +13,11 @@ class List extends React.Component {
     state = {
         person: {},
         loading: true,
-        elementStarId: 5,
+        star: {
+            itemListId: 5,
+            starFields: ["model", "crew", "cost", "passengers"]
+        },
+        elementStarId: 0
     };
 
     componentDidMount() {
@@ -30,14 +33,17 @@ class List extends React.Component {
     };
 
     getElementId = (itemListId) => {
-        this.setState({elementStarId: itemListId})
+        this.setState({star:{itemListId}})
     }
 
     render() {
-        const {person, loading, elementStarId} = this.state;
-        const {getAllPersons, getStarship, getStarshipImage} = this.localService
-        console.debug("elementStarId", elementStarId)
+        const {/*person,*/ loading, itemListId,star} = this.state;
+        const {/*getAllPersons,*/ getStarship, getStarshipImage} = this.localService
         const stars = ["model", "passengers", "cost", "crew"]
+
+        console.log("star.itemListId",star.itemListId)
+
+
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
         }
@@ -54,9 +60,11 @@ class List extends React.Component {
                 <div className="col-6">
                     {/*<Person person={person}/>*/}
 
-                    <Starship dataId={elementStarId} getData={getStarship} getImage={getStarshipImage} stars={stars}>
-                        {/*<StarFields stars={stars} />*/}
-                    </Starship>
+                    <Starship getData={getStarship}
+                              getImage={getStarshipImage}
+                              stars={stars}
+                              fields={star}
+                    />
                 </div>
             </div>
         )

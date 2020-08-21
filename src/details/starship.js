@@ -15,23 +15,29 @@ class Starship extends Component {
 
 
     componentDidMount() {
-        const {dataId, getData, getImage} = this.props
-        getData(dataId)
+        const {getData, getImage, fields: {itemListId}} = this.props
+
+        getData(itemListId)
             .then((data) => {
                 this.setState({data})
             });
-        this.setState({image: getImage(dataId)})
+        this.setState({image: getImage(itemListId)})
+        console.log("itemListId",itemListId)
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.dataId !== prevProps.dataId) {
-            const {dataId, getData} = this.props
-            getData(dataId)
+        const {fields: {itemListId}, getData} = this.props
+
+        if (this.props.fields.itemListId !== prevProps.fields.itemListId) {
+            getData(itemListId)
                 .then((data) => {
                     this.setState({data})
                 });
-            this.setState({image: this.localService.getStarshipImage(dataId)})
+            this.setState({image: this.localService.getStarshipImage(itemListId)})
+            console.log("itemListId",itemListId)
+
         }
+
     }
 
     render() {
@@ -47,7 +53,7 @@ class Starship extends Component {
             <ErrorBoundary>
                 class Starship
                 <div className="person row">
-                    <StarFields data={data} stars={stars}/>
+                    <StarFields data={data} fields={stars}/>
 
                     <figure className="person-figure col-4">
                         <img className="person-img"

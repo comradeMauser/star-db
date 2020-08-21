@@ -1,14 +1,14 @@
 import React from 'react';
 
 
-const StarFields = ({data, stars}) => {
+const StarFields = ({data, fields}) => {
 
     return (
         <ul className="list-group col-6">
             <li className="list-group-item text-center text-warning">{data.name}</li>
             {
-                stars.map(element => {
-                    return <li key={stars.length++}
+                fields.map(element => {
+                    return <li key={fields.length++}
                         className="list-group-item"> {element}: {data[element]}</li>
                 })
             }
