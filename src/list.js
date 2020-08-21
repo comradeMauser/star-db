@@ -37,7 +37,7 @@ class List extends React.Component {
         const {person, loading, elementStarId} = this.state;
         const {getAllPersons, getStarship, getStarshipImage} = this.localService
         console.debug("elementStarId", elementStarId)
-        const stars = ["name", "model", "passengers", "cost", "crew"]
+        const stars = ["model", "passengers", "cost", "crew"]
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
         }
@@ -54,7 +54,7 @@ class List extends React.Component {
                 <div className="col-6">
                     {/*<Person person={person}/>*/}
 
-                    <Starship dataId={elementStarId} getData={getStarship} getImage={getStarshipImage}>
+                    <Starship dataId={elementStarId} getData={getStarship} getImage={getStarshipImage} stars={stars}>
                         {/*<StarFields stars={stars} />*/}
                     </Starship>
                 </div>
