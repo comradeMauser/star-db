@@ -14,7 +14,7 @@ class List extends React.Component {
     state = {
         person: {},
         loading: true,
-        elementId: 5,
+        elementStarId: 5,
     };
 
     componentDidMount() {
@@ -30,13 +30,13 @@ class List extends React.Component {
     };
 
     getElementId = (itemListId) => {
-        this.setState({elementId: itemListId})
+        this.setState({elementStarId: itemListId})
     }
 
     render() {
-        const {person, loading, elementId} = this.state;
+        const {person, loading, elementStarId} = this.state;
         const {getAllPersons, getStarship, getStarshipImage} = this.localService
-        console.debug("elementId", elementId)
+        console.debug("elementStarId", elementStarId)
         const stars = ["name", "model", "passengers", "cost", "crew"]
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
@@ -44,16 +44,18 @@ class List extends React.Component {
         return (
             <div className="row">
                 <div className="col-5">
-                    <ListItems listItems={getAllPersons} getItem={this.getPerson}/>
+                    List:
+                    {/*<ListItems listItems={getAllPersons} getItem={this.getPerson}/>*/}
                     <ListItems listItems={this.localService.getAllStarships} getItem={this.getElementId}/>
                     {/*<ListItems listItems={this.localService.getAllPlanets} getItem={this.getPerson}/>*/}
                     {/*<ListItems listItems={this.localService.getAllVehicles} getItem={this.getPerson}/>*/}
                 </div>
-                <div className="col-6">
-                    <Person person={person}/>
 
-                    <Starship dataId={elementId} getData={getStarship} getImage={getStarshipImage}>
-                        <StarFields stars={stars} />
+                <div className="col-6">
+                    {/*<Person person={person}/>*/}
+
+                    <Starship dataId={elementStarId} getData={getStarship} getImage={getStarshipImage}>
+                        {/*<StarFields stars={stars} />*/}
                     </Starship>
                 </div>
             </div>
