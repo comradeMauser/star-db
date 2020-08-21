@@ -134,7 +134,7 @@ export default class Service {
 // test.getPerson(23).then((res) => console.log(`Person ${res.name}:`,res))
 
 // test.getAllStarships().then((res) => console.log(`AllStarships:`,res))
-// test.getStarship(2).then((res) => console.log(`Starship ${res.name}:`,res))
+// test.getStarship(2).then((res) => console.log(`ItemDetails ${res.name}:`,res))
 
 // test.getAllVehicles().then((res) => console.log(`All Vehicles:`,res))
 // test.getVehicles(4).then((res) => console.log(`Vehicle ${res.name}:`, res ))

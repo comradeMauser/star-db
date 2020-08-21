@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
 // import Person from "./details/person";
-import Starship from "./details/starship";
+import ItemDetails from "./details/itemDetails";
 import ListItems from "./list-items";
 import Service from "./services/service";
 
@@ -11,13 +11,27 @@ class List extends React.Component {
     localService = new Service();
 
     state = {
-        person: {},
         loading: true,
-        star: {
-            itemListId: 5,
-            starFields: ["model", "crew", "cost", "passengers"]
+
+        person: {
+            id: 5,
+            fields: ["birth", "eye", "height", "mass"]
         },
-        elementStarId: 0
+
+        star: {
+            id: 5,
+            fields: ["model", "crew", "cost", "passengers"]
+        },
+
+        planet: {
+            id: 5,
+            fields: []
+        },
+
+        vehicle: {
+            id: 5,
+            fields: []
+        },
     };
 
     componentDidMount() {
@@ -32,17 +46,13 @@ class List extends React.Component {
         // console.log("person:", this.state.person)
     };
 
-    getElementId = (itemListId) => {
-        this.setState({star:{itemListId}})
+    getElementId = (id) => {
+        this.setState({star: {id}})
     }
 
     render() {
-        const {/*person,*/ loading, itemListId,star} = this.state;
-        const {/*getAllPersons,*/ getStarship, getStarshipImage} = this.localService
-        const stars = ["model", "passengers", "cost", "crew"]
-
-        console.log("star.itemListId",star.itemListId)
-
+        const {loading, person, star} = this.state;
+        const {getStarship, getStarshipImage, getPerson, getPersonImage} = this.localService
 
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
@@ -58,13 +68,14 @@ class List extends React.Component {
                 </div>
 
                 <div className="col-6">
-                    {/*<Person person={person}/>*/}
 
-                    <Starship getData={getStarship}
-                              getImage={getStarshipImage}
-                              stars={stars}
-                              fields={star}
+                    <ItemDetails getData={getStarship}
+                                 getImage={getStarshipImage}
+                                 object={star}
                     />
+                {/*    <ItemDetails getData={getPerson}
+                                 getImage={getPersonImage}
+                                 object={person}/>*/}
                 </div>
             </div>
         )

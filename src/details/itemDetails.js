@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import Loader from "react-loader-spinner";
 import ErrorBoundary from "../services/error-boundary";
 import Service from "../services/service";
-import StarFields from "../starFields";
+import Fields from "../fields";
+import "./person.css"
 
-class Starship extends Component {
+class ItemDetails extends Component {
     localService = new Service();
 
     state = {
@@ -13,38 +14,35 @@ class Starship extends Component {
         loading: true,
     };
 
-
     componentDidMount() {
-        const {getData, getImage, fields: {itemListId}} = this.props
+        const {getData, getImage, object: {id}} = this.props
 
-        getData(itemListId)
+        getData(id)
             .then((data) => {
                 this.setState({data})
             });
-        this.setState({image: getImage(itemListId)})
-        console.log("itemListId",itemListId)
+        this.setState({image: getImage(id)})
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const {fields: {itemListId}, getData} = this.props
+        const {object: {id}, getData} = this.props
 
-        if (this.props.fields.itemListId !== prevProps.fields.itemListId) {
-            getData(itemListId)
+        if (this.props.object.id !== prevProps.object.id) {
+            getData(id)
                 .then((data) => {
                     this.setState({data})
                 });
-            this.setState({image: this.localService.getStarshipImage(itemListId)})
-            console.log("itemListId",itemListId)
-
+            this.setState({image: this.localService.getStarshipImage(id)})
         }
-
     }
+
 
     render() {
         const {data, image} = this.state
         const {id} = data
-        const {stars} = this.props
-        console.log(this.state.data)
+        const {object:{fields}}=this.props
+        console.log("fields:",fields)
+        console.log("data:",data)
 
         if (!id) {
             return <Loader type="Rings" color="yellow"/>
@@ -53,7 +51,7 @@ class Starship extends Component {
             <ErrorBoundary>
                 class Starship
                 <div className="person row">
-                    <StarFields data={data} fields={stars}/>
+                    <Fields data={data} fields={this.props.object.fields}/>
 
                     <figure className="person-figure col-4">
                         <img className="person-img"
@@ -66,4 +64,4 @@ class Starship extends Component {
     }
 }
 
-export default Starship;
+export default ItemDetails;

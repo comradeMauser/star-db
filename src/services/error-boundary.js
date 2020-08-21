@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorButton from "./error-button";
+// import ErrorButton from "./error-button";
 import ErrorIndicator from "./error-indicator";
 
 
