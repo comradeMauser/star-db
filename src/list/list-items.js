@@ -1,6 +1,6 @@
 import React from 'react';
 import "./list-items.css";
-import ErrorBoundary from "./services/error-boundary";
+import ErrorBoundary from "../services/error-boundary";
 
 class ListItems extends React.Component {
     state = {
@@ -10,7 +10,7 @@ class ListItems extends React.Component {
     componentDidMount() {
         const {listItems} = this.props;
 
-        //get state items
+        //get state [items]
         listItems()
             .then((items) => {
                 this.setState({items})

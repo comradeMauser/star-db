@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Loader from "react-loader-spinner";
 import ErrorBoundary from "../services/error-boundary";
-import Fields from "../fields";
-import "./item.css"
+import Fields from "./fields";
+import "./itemDetails.css"
 
 class ItemDetails extends Component {
 
@@ -50,7 +50,7 @@ class ItemDetails extends Component {
                     <figure className="item-figure col-3">
                         <img className="item-img"
                              src={image}
-                             alt="person"/>
+                             alt="something wrong :)"/>
                     </figure>
                 </div>
             </ErrorBoundary>

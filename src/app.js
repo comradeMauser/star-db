@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./header";
 // import Random from "./random";
-import List from "./list";
+import List from "./list/list";
 import "./app.css";
 
 
