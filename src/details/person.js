@@ -1,5 +1,5 @@
 import React from 'react';
-import "./person.css";
+import "./item.css";
 import Loader from "react-loader-spinner";
 import ErrorBoundary from "../services/error-boundary";
 

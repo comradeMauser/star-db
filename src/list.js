@@ -1,8 +1,8 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
-// import Person from "./details/person";
 import ItemDetails from "./details/itemDetails";
 import ListItems from "./list-items";
+import Row from "./services/row";
 import Service from "./services/service";
 
 
@@ -43,7 +43,6 @@ class List extends React.Component {
             .then((person) => {
                 this.setState({person})
             })
-        // console.log("person:", this.state.person)
     };
 
     getStarId = (id) => {
@@ -57,20 +56,32 @@ class List extends React.Component {
 
     render() {
         const {loading, star, person} = this.state;
-        const {getStarship, getStarshipImage, getPerson, getPersonImage} = this.localService
-        console.debug("star.fields:", star)
-        console.log(getPersonImage(5))
+        const {getAllStarships, getStarship, getStarshipImage, getAllPersons, getPerson, getPersonImage} = this.localService
 
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
         }
         return (
-            <div className="row">
+            <div className="container row">
+
+                <Row left={
+                    <ListItems listItems={getAllStarships} getItem={this.getStarId}/>
+                }
+                     right={
+                         <ItemDetails getData={getStarship}
+                                      getImage={getStarshipImage}
+                                      object={star}
+                         />
+                     }
+                />
+
+
+{/*
                 <div className="col-5">
                     List:
-                    {/*<ListItems listItems={getAllPersons} getItem={this.getPerson}/>*/}
-                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getStarId}/>
-                    <ListItems listItems={this.localService.getAllPersons} getItem={this.getPersonId}/>
+                    <ListItems listItems={getAllPersons} getItem={this.getPerson}/>
+                    <ListItems listItems={getAllStarships} getItem={this.getStarId}/>
+                    <ListItems listItems={getAllPersons} getItem={this.getPersonId}/>
                 </div>
 
                 <div className="col-6">
@@ -84,7 +95,11 @@ class List extends React.Component {
                                  getImage={getPersonImage}
                                  object={person}/>
                 </div>
+
+*/}
+
             </div>
+
         )
     }
 }
