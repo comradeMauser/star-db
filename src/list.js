@@ -46,13 +46,20 @@ class List extends React.Component {
         // console.log("person:", this.state.person)
     };
 
-    getElementId = (id) => {
-        this.setState({star: {id}})
+    getStarId = (id) => {
+        const {fields} = this.state.star
+        this.setState({star: {id: id, fields: fields}})
+    };
+    getPersonId = (id) => {
+        const {fields} = this.state.person
+        this.setState({person: {id: id, fields: fields}})
     }
 
     render() {
-        const {loading, person, star} = this.state;
+        const {loading, star, person} = this.state;
         const {getStarship, getStarshipImage, getPerson, getPersonImage} = this.localService
+        console.debug("star.fields:", star)
+        console.log(getPersonImage(5))
 
         if (loading) {
             return <Loader type="Rings" color="yellow"/>
@@ -62,9 +69,8 @@ class List extends React.Component {
                 <div className="col-5">
                     List:
                     {/*<ListItems listItems={getAllPersons} getItem={this.getPerson}/>*/}
-                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getElementId}/>
-                    {/*<ListItems listItems={this.localService.getAllPlanets} getItem={this.getPerson}/>*/}
-                    {/*<ListItems listItems={this.localService.getAllVehicles} getItem={this.getPerson}/>*/}
+                    <ListItems listItems={this.localService.getAllStarships} getItem={this.getStarId}/>
+                    <ListItems listItems={this.localService.getAllPersons} getItem={this.getPersonId}/>
                 </div>
 
                 <div className="col-6">
@@ -73,9 +79,10 @@ class List extends React.Component {
                                  getImage={getStarshipImage}
                                  object={star}
                     />
-                {/*    <ItemDetails getData={getPerson}
+
+                    <ItemDetails getData={getPerson}
                                  getImage={getPersonImage}
-                                 object={person}/>*/}
+                                 object={person}/>
                 </div>
             </div>
         )

@@ -39,19 +39,16 @@ class ItemDetails extends Component {
 
     render() {
         const {data, image} = this.state
-        const {id} = data
         const {object:{fields}}=this.props
-        console.log("fields:",fields)
-        console.log("data:",data)
 
-        if (!id) {
+        if (!data.id) {
             return <Loader type="Rings" color="yellow"/>
         }
         return (
             <ErrorBoundary>
                 class Starship
                 <div className="person row">
-                    <Fields data={data} fields={this.props.object.fields}/>
+                    <Fields data={data} fields={fields}/>
 
                     <figure className="person-figure col-4">
                         <img className="person-img"

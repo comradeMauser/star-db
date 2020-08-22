@@ -28,7 +28,6 @@ class ListItems extends React.Component {
                 <li key={item.id}
                     className="list-group-item"
                     onClick={() => {
-                        // console.log("item.id:", item.id);
                         getItem(item.id)
                     }}
                 >
