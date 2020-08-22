@@ -23,7 +23,7 @@ export default class Service {
     };
 
     getPersonImage = (id) => {
-        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
     };
 
     //Planets(total 60)
