@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import Service from "../services/service";
 import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
+import {Consumer} from "../services/context"
 
 
 class Starships extends Component {
-    localService = new Service();
 
     state = {
         star: {
@@ -21,25 +20,30 @@ class Starships extends Component {
     };
 
     render() {
-        const {getAllStarships, getStarship, getStarshipImage} = this.localService
         const {star} = this.state
         // console.debug(this.state.star)
         return (
-            <div>
-                <Row
-                    left={
-                        <ListItems listItems={getAllStarships}
-                                   getItemId={this.getStarshipId}
-                        />
-                    }
-                    right={
-                        <ItemDetails getData={getStarship}
-                                     getImage={getStarshipImage}
-                                     object={star}
-                        />
-                    }
-                />
-            </div>
+            <Consumer>
+                {({getAllStarships, getStarship, getStarshipImage}) => {
+                    return (
+                        <div>
+                            <Row
+                                left={
+                                    <ListItems listItems={getAllStarships}
+                                               getItemId={this.getStarshipId}
+                                    />
+                                }
+                                right={
+                                    <ItemDetails getData={getStarship}
+                                                 getImage={getStarshipImage}
+                                                 object={star}
+                                    />
+                                }
+                            />
+                        </div>
+                    )
+                }}
+            </Consumer>
         );
     }
 }

@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import Service from "../services/service";
 import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
+import {Consumer} from "../services/context"
 
 
 class Persons extends Component {
-    localService = new Service();
 
     state = {
         person: {
@@ -21,25 +20,30 @@ class Persons extends Component {
     };
 
     render() {
-        const {getAllPersons, getPerson, getPersonImage} = this.localService
         const {person} = this.state
         // console.debug(this.state.person)
         return (
-            <div>
-                <Row
-                    left={
-                        <ListItems listItems={getAllPersons}
-                                   getItemId={this.getPersonId}
-                        />
-                    }
-                    right={
-                        <ItemDetails getData={getPerson}
-                                     getImage={getPersonImage}
-                                     object={person}
-                        />
-                    }
-                />
-            </div>
+            <Consumer>
+                {({getAllPersons, getPerson, getPersonImage}) => {
+                    return (
+                        <div>
+                            <Row
+                                left={
+                                    <ListItems listItems={getAllPersons}
+                                               getItemId={this.getPersonId}
+                                    />
+                                }
+                                right={
+                                    <ItemDetails getData={getPerson}
+                                                 getImage={getPersonImage}
+                                                 object={person}
+                                    />
+                                }
+                            />
+                        </div>
+                    )
+                }}
+            </Consumer>
         );
     }
 }
