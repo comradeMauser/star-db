@@ -2,6 +2,7 @@ import React from 'react';
 import Loader from "react-loader-spinner";
 import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
+import Persons from "./persons";
 import Row from "./row";
 import Service from "../services/service";
 
@@ -13,10 +14,12 @@ class List extends React.Component {
     state = {
         loading: true,
 
+/*
         person: {
             id: 23,
             fields: ["birth", "eye", "height", "mass"]
         },
+*/
 
         star: {
             id: 5,
@@ -42,11 +45,13 @@ class List extends React.Component {
         const {fields} = this.state.star
         this.setState({star: {id: id, fields: fields}})
     };
+/*
 
     getPersonId = (id) => {
         const {fields} = this.state.person
         this.setState({person: {id: id, fields: fields}})
     };
+*/
 
     getVehicleId = (id) => {
         const {fields} = this.state.vehicle
@@ -72,6 +77,7 @@ class List extends React.Component {
         }
         return (
             <div className="container row">
+                <Persons object={person}/>
 
                 <Row
                     left={
@@ -85,7 +91,7 @@ class List extends React.Component {
                         />
                     }
                 />
-
+{/*
                 <Row
                     left={
                         <ListItems listItems={getAllPersons}
@@ -97,7 +103,7 @@ class List extends React.Component {
                                      object={person}
                         />
                     }
-                />
+                />*/}
 
                 <Row
                     left={
