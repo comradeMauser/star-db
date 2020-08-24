@@ -20,7 +20,7 @@ class ListItems extends React.Component {
 
 
     render() {
-        const {getItem} = this.props
+        const {getItemId} = this.props
         const {items} = this.state
 
         const list = items.map(item => {
@@ -28,7 +28,7 @@ class ListItems extends React.Component {
                 <li key={item.id}
                     className="list-group-item"
                     onClick={() => {
-                        getItem(item.id)
+                        getItemId(item.id)
                     }}
                 >
                     {item.name}

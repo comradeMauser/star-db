@@ -42,6 +42,7 @@ class List extends React.Component {
         const {fields} = this.state.star
         this.setState({star: {id: id, fields: fields}})
     };
+
     getPersonId = (id) => {
         const {fields} = this.state.person
         this.setState({person: {id: id, fields: fields}})
@@ -55,7 +56,7 @@ class List extends React.Component {
     getPlanetId = (id) => {
         const {fields} = this.state.planet
         this.setState({planet: {id: id, fields: fields}})
-    }
+    };
 
     render() {
         const {loading, star, person, vehicle, planet} = this.state;
@@ -72,48 +73,56 @@ class List extends React.Component {
         return (
             <div className="container row">
 
-                <Row left={
-                    <ListItems listItems={getAllStarships} getItem={this.getStarId}/>
-                }
-                     right={
-                         <ItemDetails getData={getStarship}
-                                      getImage={getStarshipImage}
-                                      object={star}
-                         />
-                     }
+                <Row
+                    left={
+                        <ListItems listItems={getAllStarships}
+                                   getItemId={this.getStarId}/>
+                    }
+                    right={
+                        <ItemDetails getData={getStarship}
+                                     getImage={getStarshipImage}
+                                     object={star}
+                        />
+                    }
                 />
 
-                <Row left={
-                    <ListItems listItems={getAllPersons} getItem={this.getPersonId}/>
-                }
-                     right={
-                         <ItemDetails getData={getPerson}
-                                      getImage={getPersonImage}
-                                      object={person}
-                         />
-                     }
+                <Row
+                    left={
+                        <ListItems listItems={getAllPersons}
+                                   getItemId={this.getPersonId}/>
+                    }
+                    right={
+                        <ItemDetails getData={getPerson}
+                                     getImage={getPersonImage}
+                                     object={person}
+                        />
+                    }
                 />
 
-                <Row left={
-                    <ListItems listItems={getAllVehicles} getItem={this.getVehicleId}/>
-                }
-                     right={
-                         <ItemDetails getData={getVehicle}
-                                      getImage={getVehicleImage}
-                                      object={vehicle}
-                         />
-                     }
+                <Row
+                    left={
+                        <ListItems listItems={getAllVehicles}
+                                   getItemId={this.getVehicleId}/>
+                    }
+                    right={
+                        <ItemDetails getData={getVehicle}
+                                     getImage={getVehicleImage}
+                                     object={vehicle}
+                        />
+                    }
                 />
 
-                <Row left={
-                    <ListItems listItems={getAllPlanets} getItem={this.getPlanetId}/>
-                }
-                     right={
-                         <ItemDetails getData={getPlanet}
-                                      getImage={getPlanetImage}
-                                      object={planet}
-                         />
-                     }
+                <Row
+                    left={
+                        <ListItems listItems={getAllPlanets}
+                                   getItemId={this.getPlanetId}/>
+                    }
+                    right={
+                        <ItemDetails getData={getPlanet}
+                                     getImage={getPlanetImage}
+                                     object={planet}
+                        />
+                    }
                 />
             </div>
         )
