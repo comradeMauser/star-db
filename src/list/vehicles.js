@@ -23,7 +23,7 @@ class Vehicles extends Component {
     render() {
         const {getAllVehicles, getVehicle, getVehicleImage} = this.localService
         const {vehicle} = this.state
-        console.debug(this.state.vehicle)
+        // console.debug(this.state.vehicle)
         return (
             <div>
                 <Row

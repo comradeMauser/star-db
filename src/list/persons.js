@@ -23,7 +23,7 @@ class Persons extends Component {
     render() {
         const {getAllPersons, getPerson, getPersonImage} = this.localService
         const {person} = this.state
-        console.debug(this.state.person)
+        // console.debug(this.state.person)
         return (
             <div>
                 <Row

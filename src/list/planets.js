@@ -23,7 +23,7 @@ class Planets extends Component {
     render() {
         const {getAllPlanets, getPlanet, getPlanetImage} = this.localService
         const {planet} = this.state
-        console.debug(this.state.planet)
+        // console.debug(this.state.planet)
         return (
             <div>
                 <Row
@@ -43,6 +43,5 @@ class Planets extends Component {
         );
     }
 }
-
 
 export default Planets;
