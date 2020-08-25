@@ -3,7 +3,7 @@
     padding: 2px;
     margin: 2px;
     color: #2aaacf;
-    background-color: #1b1e20;
+    /*background-color: #1b1e20;*/
 }
 
 .list-group-item {
@@ -11,9 +11,11 @@
     margin: 0;
 }
 
-img {
+.random.figure-img {
     margin-bottom: 3px;
     margin-right: 3px;
+    padding: 3px;
     height: 295px;
     border-radius: 5px;
+    border: solid 1px black;
 }

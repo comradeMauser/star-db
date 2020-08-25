@@ -3,7 +3,7 @@ import ErrorIndicator from "./services/error-indicator";
 import Service from "./services/service";
 import Spinner from "./services/spinner";
 import "./random.css";
-import TestButtons from "./services/test-buttons";
+// import TestButtons from "./services/test-buttons";
 
 
 class Random extends React.Component {
@@ -40,8 +40,8 @@ class Random extends React.Component {
 
     //gets object data from service
     upd = () => {
-        // const id = Math.floor(Math.random() * 60) + 1
-        const id = 300
+        const id = Math.floor(Math.random() * 60) + 1
+        // const id = 300
         this.localService.getPlanet(id)
             .then(this.updState)
             .catch((error) => this.errCatch(error))
@@ -72,11 +72,10 @@ class Random extends React.Component {
 
         return (
             <div className="random justify-content-center">
-                Допилить life hooks
                 {content}
                 {indicator}
                 {spinner}
-                <TestButtons upd={this.upd} load={this.load} err={this.errCatch}/>
+                {/*<TestButtons upd={this.upd} load={this.load} err={this.errCatch}/>*/}
             </div>
         )
     }
@@ -93,7 +92,8 @@ const Content = (props) => {
         <React.Fragment>
             Random Planet - id: {id}
             <div className="container d-flex justify-content-center">
-                <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                <img className="random figure-img"
+                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
                      alt="random"/>
                 <li className="list-group">
                     <ul className="list-group-item">name: {name}</ul>
