@@ -16,7 +16,7 @@ class Persons extends Component {
 
     getPersonId = (id) => {
         const {fields} = this.state.person
-        this.setState({person: {id: id, fields: fields}})
+        this.setState({person: {id, fields}})
     };
 
     render() {

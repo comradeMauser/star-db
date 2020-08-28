@@ -16,7 +16,7 @@ class Planets extends Component {
 
     getPlanetId = (id) => {
         const {fields} = this.state.planet
-        this.setState({planet: {id: id, fields: fields}})
+        this.setState({planet: {id, fields}})
     };
 
     render() {

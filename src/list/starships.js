@@ -16,7 +16,7 @@ class Starships extends Component {
 
     getStarshipId = (id) => {
         const {fields} = this.state.star
-        this.setState({star: {id: id, fields: fields}})
+        this.setState({star: {id, fields}})
     };
 
     render() {

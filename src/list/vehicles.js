@@ -16,7 +16,7 @@ class Vehicles extends Component {
 
     getVehicleId = (id) => {
         const {fields} = this.state.vehicle
-        this.setState({vehicle: {id: id, fields: fields}})
+        this.setState({vehicle: {id, fields}})
     };
 
     render() {
