@@ -1,6 +1,6 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Service from "../services/service";
 import Persons from "./persons";
 import Planets from "./planets";
@@ -29,7 +29,6 @@ class List extends React.Component {
         }
         return (
             <Provider value={this.localService}>
-                <BrowserRouter>
                     <div className="container-fluid">
                         <Route path="/Persons" component={Persons}/>
                         <Route path="/Vehicles" component={Vehicles}/>
@@ -41,7 +40,6 @@ class List extends React.Component {
                         {/*<Vehicles/>*/}
                         {/*<Starships/>*/}
                     </div>
-                </BrowserRouter>
             </Provider>
         )
     }

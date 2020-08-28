@@ -1,31 +1,29 @@
 import React from 'react';
 import "./header.css";
+import {Link} from "react-router-dom";
 
 
 const Header = () => {
     return (
         <div className="container">
-
-            <nav className="navbar-expand navbar-outline-light bg-dark">
-                <div className="collapse navbar-collapse" >
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/#">Home</a>
-                        </li><li className="nav-item">
-                            <a className="nav-link" href="/planets">Planets</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/persons">Persons</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/starships">Starships</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/vehicles">Vehicles</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <ul className="d-flex list-unstyled">
+                <li className="list-group-item">
+                    <Link to="/#">Home</Link>
+                </li>
+                <li className="list-group-item">
+                    <Link to="/planets">Planets</Link>
+                </li>
+                <li className="list-group-item">
+                    <Link to="/persons">Persons</Link>
+                </li>
+                <li className="list-group-item">
+                    <Link to="/starships">Starships</Link>
+                </li>
+                <li className="list-group-item">
+                    <Link to="/vehicles">Vehicles</Link>
+                </li>
+                <li className="list-group-item">very important button</li>
+            </ul>
         </div>
     );
 };
