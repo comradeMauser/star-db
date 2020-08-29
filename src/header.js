@@ -8,7 +8,7 @@ const Header = () => {
         <div className="container">
             <ul className="d-flex list-unstyled">
                 <li className="list-group-item">
-                    <Link to="/#">Home</Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li className="list-group-item">
                     <Link to="/planets">Planets</Link>

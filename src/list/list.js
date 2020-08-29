@@ -29,17 +29,26 @@ class List extends React.Component {
         }
         return (
             <Provider value={this.localService}>
-                    <div className="container-fluid">
-                        <Route path="/Persons" component={Persons}/>
-                        <Route path="/Vehicles" component={Vehicles}/>
-                        <Route path="/Planets" component={Planets}/>
-                        <Route path="/Starships" component={Starships}/>
+                <div className="container-fluid">
+                    <Route path="/"
+                           render={() =>
+                               <h1 className="text-center">...along time ago in a galaxy far far away...</h1>}
+                           exact={true}/>
+                    <Route path="/Persons" component={Persons}/>
+                    <Route path="/Vehicles" component={Vehicles}/>
+                    <Route path="/Planets" component={Planets}/>
+                    <Route path="/Starships" component={Starships}/>
+                    <Route path="/Starships/:id"
+                           render={
+                               ({match})=>{
+                                   console.debug(match)
+                                   return <Starships/>}}/>
 
-                        {/*<Persons/>*/}
-                        {/*<Planets/>*/}
-                        {/*<Vehicles/>*/}
-                        {/*<Starships/>*/}
-                    </div>
+                    {/*<Persons/>*/}
+                    {/*<Planets/>*/}
+                    {/*<Vehicles/>*/}
+                    {/*<Starships/>*/}
+                </div>
             </Provider>
         )
     }

@@ -9,7 +9,7 @@ import "./app.css";
 const App = () => {
     return (
         <BrowserRouter>
-            <div className="app">
+            <div className="container-md">
                 <Header/>
                 {/*<Random/>*/}
                 <List/>

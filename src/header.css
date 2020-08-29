@@ -1,8 +1,9 @@
-.header{
+.header {
     text-align: center;
     color: red;
 }
-.list-group-item{
-margin-left: 1px;
-margin-right: 1px;
+
+.list-group-item {
+    margin-left: 1px;
+    margin-right: 1px;
 }
