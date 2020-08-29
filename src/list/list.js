@@ -12,7 +12,6 @@ import {Provider} from "../services/context"
 class List extends React.Component {
     localService = new Service();
 
-
     state = {
         loading: true,
     };
@@ -38,16 +37,6 @@ class List extends React.Component {
                     <Route path="/Vehicles" component={Vehicles}/>
                     <Route path="/Planets" component={Planets}/>
                     <Route path="/Starships" component={Starships}/>
-                    <Route path="/Starships/:id"
-                           render={
-                               ({match})=>{
-                                   console.debug(match)
-                                   return <Starships/>}}/>
-
-                    {/*<Persons/>*/}
-                    {/*<Planets/>*/}
-                    {/*<Vehicles/>*/}
-                    {/*<Starships/>*/}
                 </div>
             </Provider>
         )
