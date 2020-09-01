@@ -10,29 +10,18 @@ class Persons extends Component {
     state = {
         id: 23,
         fields: ["birth", "eye", "height", "mass"],
-    }
+    };
 
-    getPersonId = (id) => {
-        // const {fields} = this.state.person
+    getItemnId = (id) => {
         this.setState({id})
     };
 
-    componentDidMount(): void {
+    componentDidMount(){
         const {itemId} = this.props
         if (itemId) {
             this.setState({id: itemId})
         }
-    }
-
-    /*
-        componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
-            const {itemId} = this.props
-            if (this.props.itemId !== prevProps.itemId) {
-                this.setState({id: itemId})
-            }
-            console.log(this.state.id)
-        }
-    */
+    };
 
     render() {
         const {fields, id} = this.state
@@ -45,7 +34,7 @@ class Persons extends Component {
                             <Row
                                 left={
                                     <ListItems listItems={getAllPersons}
-                                               getItemId={this.getPersonId}
+                                               getItemId={this.getItemnId}
                                     />
                                 }
                                 right={
