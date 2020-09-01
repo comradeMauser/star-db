@@ -8,20 +8,35 @@ import {Consumer} from "../services/context"
 class Persons extends Component {
 
     state = {
-        person: {
-            id: 23,
-            fields: ["birth", "eye", "height", "mass"]
-        },
+        id: 23,
+        fields: ["birth", "eye", "height", "mass"],
     }
 
     getPersonId = (id) => {
-        const {fields} = this.state.person
-        this.setState({person: {id, fields}})
+        // const {fields} = this.state.person
+        this.setState({id})
     };
 
+    componentDidMount(): void {
+        const {itemId} = this.props
+        if (itemId) {
+            this.setState({id: itemId})
+        }
+    }
+
+    /*
+        componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS): void {
+            const {itemId} = this.props
+            if (this.props.itemId !== prevProps.itemId) {
+                this.setState({id: itemId})
+            }
+            console.log(this.state.id)
+        }
+    */
+
     render() {
-        const {person} = this.state
-        // console.debug(this.state.person)
+        const {fields, id} = this.state
+        console.debug(this.state.id)
         return (
             <Consumer>
                 {({getAllPersons, getPerson, getPersonImage}) => {
@@ -36,7 +51,8 @@ class Persons extends Component {
                                 right={
                                     <ItemDetails getData={getPerson}
                                                  getImage={getPersonImage}
-                                                 object={person}
+                                                 fields={fields}
+                                                 itemId={id}
                                     />
                                 }
                             />

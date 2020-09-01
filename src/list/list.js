@@ -31,12 +31,16 @@ class List extends React.Component {
                 <div className="container-fluid">
                     <Route path="/"
                            render={() =>
-                               <h1 className="text-center">...along time ago in a galaxy far far away...</h1>}
+                               <h2 className="text-center">...along time ago in a galaxy far far away...</h2>}
                            exact={true}/>
-                    <Route path="/Persons" component={Persons}/>
-                    <Route path="/Vehicles" component={Vehicles}/>
-                    <Route path="/Planets" component={Planets}/>
-                    <Route path="/Starships" component={Starships}/>
+                    <Route path="/Persons" component={Persons} exact={true}/>
+                    <Route path="/persons/:id" render={({match})=> {
+
+                        return <Persons itemId={match.params.id}/>
+                    }}/>
+                    {/*<Route path="/Vehicles" component={Vehicles}/>*/}
+                    {/*<Route path="/Planets" component={Planets}/>*/}
+                    {/*<Route path="/Starships" component={Starships}/>*/}
                 </div>
             </Provider>
         )

@@ -13,31 +13,31 @@ class ItemDetails extends Component {
     };
 
     componentDidMount() {
-        const {getData, getImage, object: {id}} = this.props
+        const {getData, getImage, itemId} = this.props
 
-        getData(id)
+        getData(itemId)
             .then((data) => {
                 this.setState({data})
             });
-        this.setState({image: getImage(id)})
+        this.setState({image: getImage(itemId)})
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const {object: {id}, getData, getImage} = this.props
+        const {itemId, getData, getImage} = this.props
 
-        if (this.props.object.id !== prevProps.object.id) {
-            getData(id)
+        if (this.props.itemId !== prevProps.itemId) {
+            getData(itemId)
                 .then((data) => {
                     this.setState({data})
                 });
-            this.setState({image: getImage(id)})
+            this.setState({image: getImage(itemId)})
         }
     }
 
 
     render() {
         const {data, image} = this.state
-        const {object:{fields}}=this.props
+        const {fields}=this.props
 
         if (!data.id) {
             return <Loader type="Rings" color="yellow"/>
