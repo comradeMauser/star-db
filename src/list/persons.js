@@ -3,6 +3,7 @@ import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
 import {Consumer} from "../services/context"
+import {withRouter} from "react-router-dom"
 
 
 class Persons extends Component {
@@ -13,19 +14,23 @@ class Persons extends Component {
     };
 
     getItemnId = (id) => {
+        const {history} = this.props
         this.setState({id})
+        history.push(`persons/${id}/`)
     };
 
-    componentDidMount(){
+    componentDidMount() {
         const {itemId} = this.props
         if (itemId) {
             this.setState({id: itemId})
         }
     };
 
+
     render() {
         const {fields, id} = this.state
-        console.debug(this.state.id)
+        console.debug("state id:", this.state.id)
+        console.debug("props:", this.props)
         return (
             <Consumer>
                 {({getAllPersons, getPerson, getPersonImage}) => {
@@ -53,4 +58,4 @@ class Persons extends Component {
     }
 }
 
-export default Persons;
+export default withRouter(Persons);
