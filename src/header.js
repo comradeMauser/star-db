@@ -11,16 +11,16 @@ const Header = () => {
                     <Link to="/">Home</Link>
                 </li>
                 <li className="list-group-item">
-                    <Link to="/planets">Planets</Link>
+                    <Link to="/planets/">Planets</Link>
                 </li>
                 <li className="list-group-item">
-                    <Link to="/persons">Persons</Link>
+                    <Link to="/persons/">Persons</Link>
                 </li>
                 <li className="list-group-item">
-                    <Link to="/starships">Starships</Link>
+                    <Link to="/starships/">Starships</Link>
                 </li>
                 <li className="list-group-item">
-                    <Link to="/vehicles">Vehicles</Link>
+                    <Link to="/vehicles/">Vehicles</Link>
                 </li>
                 <li className="list-group-item">very important button</li>
             </ul>

@@ -16,7 +16,7 @@ class Persons extends Component {
     getItemnId = (id) => {
         const {history} = this.props
         this.setState({id})
-        history.push(`persons/${id}/`)
+        history.push(id)
     };
 
     componentDidMount() {

@@ -3,24 +3,31 @@ import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
 import {Consumer} from "../services/context"
+import {withRouter} from "react-router-dom"
 
 
 class Planets extends Component {
 
     state = {
-        planet: {
-            id: 9,
-            fields: ["climate", "diameter", "population", "rotationPeriod"]
-        },
-    }
+        id: 9,
+        fields: ["climate", "diameter", "population", "rotationPeriod"],
+    };
 
-    getPlanetId = (id) => {
-        const {fields} = this.state.planet
-        this.setState({planet: {id, fields}})
+    getItemnId = (id) => {
+        const {history} = this.props
+        this.setState({id})
+        history.push(id)
+    };
+
+    componentDidMount() {
+        const {itemId} = this.props
+        if (itemId) {
+            this.setState({id: itemId})
+        }
     };
 
     render() {
-        const {planet} = this.state
+        const {fields, id} = this.state
         // console.debug(this.state.planet)
         return (
             <Consumer>
@@ -30,13 +37,14 @@ class Planets extends Component {
                             <Row
                                 left={
                                     <ListItems listItems={getAllPlanets}
-                                               getItemId={this.getPlanetId}
+                                               getItemId={this.getItemnId}
                                     />
                                 }
                                 right={
                                     <ItemDetails getData={getPlanet}
                                                  getImage={getPlanetImage}
-                                                 object={planet}
+                                                 fields={fields}
+                                                 itemId={id}
                                     />
                                 }
                             />
@@ -48,4 +56,4 @@ class Planets extends Component {
     }
 }
 
-export default Planets;
+export default withRouter(Planets);
