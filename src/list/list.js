@@ -39,15 +39,20 @@ class List extends React.Component {
                         return <Persons itemId={match.params.id}/>
                     }}/>
 
-                    <Route path="/Vehicles" component={Vehicles}/>
+                    <Route path="/Vehicles" component={Vehicles} exact={true}/>
+                    <Route path="/Vehicles/:id" render={({match})=> {
+                        return <Vehicles itemId={match.params.id}/>
+                    }}/>
 
                     <Route path="/Planets" component={Planets} exact={true}/>
                     <Route path="/Planets/:id" render={({match})=> {
                         return <Planets itemId={match.params.id}/>
                     }}/>
 
-                    <Route path="/Starships" component={Starships}/>
-
+                    <Route path="/Starships" component={Starships} exact={true}/>
+                    <Route path="/Starships/:id" render={({match})=> {
+                        return <Starships itemId={match.params.id}/>
+                    }}/>
                 </div>
             </Provider>
         )

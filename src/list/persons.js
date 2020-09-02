@@ -29,8 +29,7 @@ class Persons extends Component {
 
     render() {
         const {fields, id} = this.state
-        console.debug("state id:", this.state.id)
-        console.debug("props:", this.props)
+        // console.debug("props:", this.props)
         return (
             <Consumer>
                 {({getAllPersons, getPerson, getPersonImage}) => {

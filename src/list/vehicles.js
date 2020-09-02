@@ -3,24 +3,32 @@ import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
 import {Consumer} from "../services/context"
+import {withRouter} from "react-router-dom"
 
 
 class Vehicles extends Component {
 
     state = {
-        vehicle: {
-            id: 4,
-            fields: ["model", "crew", "cargo", "class",]
-        },
-    }
-
-    getVehicleId = (id) => {
-        const {fields} = this.state.vehicle
-        this.setState({vehicle: {id, fields}})
+        id: 4,
+        fields: ["model", "crew", "cargo", "class",],
     };
 
+    getItemnId = (id) => {
+        const {history} = this.props
+        this.setState({id})
+        history.push(id)
+    };
+
+    componentDidMount() {
+        const {itemId} = this.props
+        if (itemId) {
+            this.setState({id: itemId})
+        }
+    };
+
+
     render() {
-        const {vehicle} = this.state
+        const {fields, id} = this.state
         // console.debug(this.state.vehicle)
         return (
             <Consumer>
@@ -30,13 +38,14 @@ class Vehicles extends Component {
                             <Row
                                 left={
                                     <ListItems listItems={getAllVehicles}
-                                               getItemId={this.getVehicleId}
+                                               getItemId={this.getItemnId}
                                     />
                                 }
                                 right={
                                     <ItemDetails getData={getVehicle}
                                                  getImage={getVehicleImage}
-                                                 object={vehicle}
+                                                 fields={fields}
+                                                 itemId={id}
                                     />
                                 }
                             />
@@ -48,4 +57,4 @@ class Vehicles extends Component {
     }
 }
 
-export default Vehicles;
+export default withRouter(Vehicles);

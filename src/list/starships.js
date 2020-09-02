@@ -3,24 +3,32 @@ import ItemDetails from "./itemDetails";
 import ListItems from "./list-items";
 import Row from "./row";
 import {Consumer} from "../services/context"
+import {withRouter} from "react-router-dom"
 
 
 class Starships extends Component {
 
     state = {
-        star: {
-            id: 5,
-            fields: ["model", "crew", "cost", "passengers"]
-        },
-    }
-
-    getStarshipId = (id) => {
-        const {fields} = this.state.star
-        this.setState({star: {id, fields}})
+        id: 5,
+        fields: ["model", "crew", "cost", "passengers"],
     };
 
+    getItemnId = (id) => {
+        const {history} = this.props
+        this.setState({id})
+        history.push(id)
+    };
+
+    componentDidMount() {
+        const {itemId} = this.props
+        if (itemId) {
+            this.setState({id: itemId})
+        }
+    };
+
+
     render() {
-        const {star} = this.state
+        const {fields, id} = this.state
         // console.debug(this.state.star)
         return (
             <Consumer>
@@ -30,13 +38,14 @@ class Starships extends Component {
                             <Row
                                 left={
                                     <ListItems listItems={getAllStarships}
-                                               getItemId={this.getStarshipId}
+                                               getItemId={this.getItemnId}
                                     />
                                 }
                                 right={
                                     <ItemDetails getData={getStarship}
                                                  getImage={getStarshipImage}
-                                                 object={star}
+                                                 fields={fields}
+                                                 itemId={id}
                                     />
                                 }
                             />
@@ -48,4 +57,4 @@ class Starships extends Component {
     }
 }
 
-export default Starships;
+export default withRouter(Starships);

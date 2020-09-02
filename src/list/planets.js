@@ -26,6 +26,7 @@ class Planets extends Component {
         }
     };
 
+
     render() {
         const {fields, id} = this.state
         // console.debug(this.state.planet)
